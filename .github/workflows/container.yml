@@ -20,19 +20,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: registry login
-        uses: redhat-actions/podman-login@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: run build
+        id: run-build
         uses: redhat-actions/buildah-build@v2
         with:
-          registry: ghcr.io
           image: ansible-ee-alpine
           tags: latest ${{ github.sha }}
           containerfiles: |
             ./Containerfile
           build-args: ""
+
+      - name: push to registry
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.run-build.outputs.image }}
+          tags: ${{ steps.run-build.outputs.tags }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print image url
+        run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
