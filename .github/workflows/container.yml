@@ -1,0 +1,38 @@
+name: Build Container Image
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * 0'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build and push image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: registry login
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: run build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          registry: ghcr.io
+          image: ansible-ee-alpine
+          tags: latest ${{ github.sha }}
+          containerfiles: |
+            ./Containerfile
+          build-args: ""
