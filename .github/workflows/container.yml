@@ -30,6 +30,7 @@ jobs:
           build-args: ""
 
       - name: push to registry
+        id: push-image
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.run-build.outputs.image }}
@@ -39,4 +40,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print image url
-        run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
+        run: echo "Image pushed to ${{ steps.push-image.outputs.registry-paths }}"
