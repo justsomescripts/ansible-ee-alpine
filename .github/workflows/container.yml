@@ -24,7 +24,7 @@ jobs:
         id: run-build
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ansible-ee-alpine
+          image: justsomescripts/ansible-ee-alpine
           tags: latest ${{ github.sha }}
           containerfiles: |
             ./Containerfile
