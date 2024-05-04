@@ -1,6 +1,6 @@
 ######################################### BUILD #########################################
  
-FROM python:3.12.0-alpine as builder
+FROM python:3.12-alpine as builder
  
     # Add configuration files
     COPY requirements/apk.build.list requirements/pip.list /requirements/
@@ -12,7 +12,7 @@ FROM python:3.12.0-alpine as builder
  
 ######################################### RUNNER #########################################
  
-FROM python:3.12.0-alpine
+FROM python:3.12-alpine
  
     # Directory for executing Playbooks
     WORKDIR /runner/
