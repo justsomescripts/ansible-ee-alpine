@@ -33,7 +33,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
-          tags: ${{ github.sha }} {{ .steps.version.outputs.version }}
+          tags: ${{ github.sha }} ${{ .steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
           build-args: ""
