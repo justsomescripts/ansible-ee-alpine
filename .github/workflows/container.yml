@@ -33,7 +33,7 @@ jobs:
 
       - name: build alpha
         if: github.ref_name != 'release'
-        id: run-build
+        id: build-alpha
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
@@ -43,9 +43,18 @@ jobs:
           containerfiles: |
             ./Containerfile
 
+      - name: push alpha to registry
+        uses: redhat-actions/push-to-registry@v2.7
+        with:
+          image: ${{ steps.build-alpha.outputs.image }}
+          tags: ${{ steps.build-alpha.outputs.tags }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: build release
         if: github.ref_name == 'release'
-        id: run-build
+        id: build-release
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
@@ -59,15 +68,11 @@ jobs:
             ./Containerfile
 
 
-      - name: push to registry
-        id: push-image
+      - name: push release to registry
         uses: redhat-actions/push-to-registry@v2.7
         with:
-          image: ${{ steps.run-build.outputs.image }}
-          tags: ${{ steps.run-build.outputs.tags }}
+          image: ${{ steps.build-release.outputs.image }}
+          tags: ${{ steps.build-release.outputs.tags }}
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: print image url
-        run: echo "Image pushed to ${{ steps.push-image.outputs.registry-paths }}"
