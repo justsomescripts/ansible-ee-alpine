@@ -18,7 +18,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: ${{ github.actor }}/renovate-config/.github/workflows/renovate.yml@main
+    uses: justsomescripts/renovate-config/.github/workflows/renovate.yml@main
     with:
       logLevel: ${{ inputs.logLevel || 'info' }}
       overrideSchedule: ${{ github.event.inputs.overrideSchedule == 'true' && '{''schedule'':null}' || '' }}
