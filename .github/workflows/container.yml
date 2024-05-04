@@ -36,7 +36,12 @@ jobs:
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
-          tags: ${{ github.sha }} ${{ steps.version.outputs.version }}
+          tags: >
+            latest
+            ${{ github.sha }}
+            ${{ steps.version.outputs.version }}
+            ${{ (github.head_ref || github.ref_name) != 'main' && ('v' + steps.version.outputs.major + '.' + steps.versions.outputs.minor) || '' }}
+            ${{ (github.head_ref || github.ref_name) != 'main' && ('v' + steps.version.outputs.major) || '' }}
           containerfiles: |
             ./Containerfile
 
