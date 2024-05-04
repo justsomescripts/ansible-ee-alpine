@@ -29,7 +29,7 @@ jobs:
           tag_prefix: v
           major_pattern: /^BREAKING CHANGE/
           minor_pattern: /^feat/
-          version_format: ${major}.${minor}.${patch}${{ (github.head_ref || github.ref_name) == 'main' && '-alpha.${increment}' || '' }}
+          version_format: ${major}.${minor}.${patch}${{ (github.head_ref || github.ref_name) != 'release' && '-alpha.${increment}' || '' }}
 
       - name: build alpha
         if: github.ref_name != 'release'
@@ -42,15 +42,6 @@ jobs:
             ${{ steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
-
-      - name: push alpha to registry
-        uses: redhat-actions/push-to-registry@v2.7
-        with:
-          image: ${{ steps.build-alpha.outputs.image }}
-          tags: ${{ steps.build-alpha.outputs.tags }}
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: build release
         if: github.ref_name == 'release'
@@ -68,11 +59,11 @@ jobs:
             ./Containerfile
 
 
-      - name: push release to registry
+      - name: push to registry
         uses: redhat-actions/push-to-registry@v2.7
         with:
-          image: ${{ steps.build-release.outputs.image }}
-          tags: ${{ steps.build-release.outputs.tags }}
+          image: ${{ (github.head_ref || github.ref_name) == 'release' && steps.build-release.outputs.image || steps.build-alpha.outputs.image }}
+          tags: ${{ (github.head_ref || github.ref_name) == 'release' && steps.build-release.outputs.tags || steps.build-alpha.outputs.tags }}
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
