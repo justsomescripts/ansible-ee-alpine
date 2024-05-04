@@ -2,11 +2,10 @@ name: Build Container Image
 
 on:
   pull_request:
-    branches: [ "main" ]
-  workflow_run:
-    workflows: [ "Renovate" ]
+    branches:
+      - main
     types:
-      - completed
+      - closed
 
 permissions: write-all
 
