@@ -37,8 +37,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
-          tags: >
-            ${{ steps.version.outputs.version }}
+          tags: ${{ steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
 
@@ -48,14 +47,9 @@ jobs:
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
-          tags: >
-            latest
-            ${{ steps.version.outputs.version }}
-            v${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}
-            v${{ steps.version.outputs.major }}
+          tags: latest ${{ steps.version.outputs.version }} v${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }} v${{ steps.version.outputs.major }}
           containerfiles: |
             ./Containerfile
-
 
       - name: push to registry
         uses: redhat-actions/push-to-registry@v2.7
