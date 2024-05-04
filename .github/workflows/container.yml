@@ -26,14 +26,14 @@ jobs:
           tag_prefix: v
           major_pattern: /^BREAKING CHANGE/
           minor_pattern: /^feat/
-          version_format: ${major}.${minor}.${patch}
+          version_format: "${major}.${minor}.${patch}"
 
       - name: run build
         id: run-build
         uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
-          tags: ${{ github.sha }} v${{ steps.version.outputs.version }}
+          tags: ${{ github.sha }} ${{ steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
           build-args: ""
