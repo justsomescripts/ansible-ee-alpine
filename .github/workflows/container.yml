@@ -40,8 +40,7 @@ jobs:
             latest
             ${{ github.sha }}
             ${{ steps.version.outputs.version }}
-            ${{ (github.head_ref || github.ref_name) != 'main' && ('v' + steps.version.outputs.major + '.' + steps.versions.outputs.minor) || '' }}
-            ${{ (github.head_ref || github.ref_name) != 'main' && ('v' + steps.version.outputs.major) || '' }}
+            v${{ (github.head_ref || github.ref_name) != 'main' && (steps.version.outputs.major) || '' }}
           containerfiles: |
             ./Containerfile
 
