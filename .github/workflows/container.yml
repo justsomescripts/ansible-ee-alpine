@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore: 
       - '.github/workflows/**'
+      - '.github/release.yml'
   pull_request:
     branches:
       - release
