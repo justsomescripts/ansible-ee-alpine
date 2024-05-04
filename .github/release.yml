@@ -1,0 +1,16 @@
+changelog:
+  exclude:
+    authors:
+      - renovate[bot]
+  categories:
+    - title: Breaking Changes 🛠
+      labels:
+        - Semver-Major
+        - breaking-change
+    - title: Features 🎉
+      labels:
+        - Semver-Minor
+        - enhancement
+    - title: Other Changes
+      labels:
+        - "*"
