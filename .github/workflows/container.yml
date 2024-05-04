@@ -1,0 +1,66 @@
+name: Build Container Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - release
+    types:
+      - closed
+  workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+  build:
+    name: build and push image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.4
+        with:
+          fetch-depth: 0
+
+      - name: determine version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: v
+          major_pattern: /^BREAKING CHANGE/
+          minor_pattern: /^feat/
+          version_format: ${major}.${minor}.${patch}${{ github.ref_name != 'release' && '-alpha.${increment}' || '' }}
+
+      - name: build alpha
+        if: github.ref_name != 'release'
+        id: build-alpha
+        uses: redhat-actions/buildah-build@v2.13
+        with:
+          image: justsomescripts/ansible-ee-alpine
+          tags: v${{ steps.version.outputs.version }}
+          containerfiles: |
+            ./Containerfile
+
+      - name: build release
+        if: github.ref_name == 'release'
+        id: build-release
+        uses: redhat-actions/buildah-build@v2.13
+        with:
+          image: justsomescripts/ansible-ee-alpine
+          tags: >
+            latest
+            v${{ steps.version.outputs.version }}
+            v${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}
+            v${{ steps.version.outputs.major }}
+          containerfiles: |
+            ./Containerfile
+
+      - name: push to registry
+        uses: redhat-actions/push-to-registry@v2.7
+        with:
+          image: ${{ (github.head_ref || github.ref_name) == 'release' && steps.build-release.outputs.image || steps.build-alpha.outputs.image }}
+          tags: ${{ (github.head_ref || github.ref_name) == 'release' && steps.build-release.outputs.tags || steps.build-alpha.outputs.tags }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
