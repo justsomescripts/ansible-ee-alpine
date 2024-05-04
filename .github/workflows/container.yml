@@ -31,7 +31,20 @@ jobs:
           minor_pattern: /^feat/
           version_format: ${major}.${minor}.${patch}${{ (github.head_ref || github.ref_name) == 'main' && '-alpha.${increment}' || '' }}
 
-      - name: run build
+      - name: build alpha
+        if: github.ref_name != 'release'
+        id: run-build
+        uses: redhat-actions/buildah-build@v2.13
+        with:
+          image: justsomescripts/ansible-ee-alpine
+          tags: >
+            ${{ github.sha }}
+            ${{ steps.version.outputs.version }}
+          containerfiles: |
+            ./Containerfile
+
+      - name: build release
+        if: github.ref_name == 'release'
         id: run-build
         uses: redhat-actions/buildah-build@v2.13
         with:
@@ -40,9 +53,11 @@ jobs:
             latest
             ${{ github.sha }}
             ${{ steps.version.outputs.version }}
-            v${{ (github.head_ref || github.ref_name) != 'main' && (steps.version.outputs.major) || '' }}
+            v${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}
+            v${{ steps.version.outputs.major }}
           containerfiles: |
             ./Containerfile
+
 
       - name: push to registry
         id: push-image
