@@ -20,7 +20,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: justsomescripts/renovate-config/.github/workflows/renovate.yml@main
+    uses: justsomescripts/renovate-config/.github/workflows/renovate.yml@release
     with:
       logLevel: ${{ inputs.logLevel || 'info' }}
       overrideSchedule: ${{ github.event.inputs.overrideSchedule == 'true' && '{''schedule'':null}' || '' }}
