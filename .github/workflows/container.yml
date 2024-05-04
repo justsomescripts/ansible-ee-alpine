@@ -1,9 +1,12 @@
 name: Build Container Image
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+  pull_request:
+    branches:
+      - release
     types:
       - closed
   workflow_dispatch:
@@ -26,7 +29,7 @@ jobs:
           tag_prefix: v
           major_pattern: /^BREAKING CHANGE/
           minor_pattern: /^feat/
-          version_format: "${major}.${minor}.${patch}"
+          version_format: ${major}.${minor}.${patch}${{ github.ref == 'refs/head/main' && '-alpha' }}
 
       - name: run build
         id: run-build
@@ -36,11 +39,10 @@ jobs:
           tags: ${{ github.sha }} ${{ steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
-          build-args: ""
 
       - name: push to registry
         id: push-image
-        uses: redhat-actions/push-to-registry@v2
+        uses: redhat-actions/push-to-registry@v2.7
         with:
           image: ${{ steps.run-build.outputs.image }}
           tags: ${{ steps.run-build.outputs.tags }}
