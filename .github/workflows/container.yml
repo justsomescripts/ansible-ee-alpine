@@ -38,7 +38,6 @@ jobs:
         with:
           image: justsomescripts/ansible-ee-alpine
           tags: >
-            ${{ github.sha }}
             ${{ steps.version.outputs.version }}
           containerfiles: |
             ./Containerfile
@@ -51,7 +50,6 @@ jobs:
           image: justsomescripts/ansible-ee-alpine
           tags: >
             latest
-            ${{ github.sha }}
             ${{ steps.version.outputs.version }}
             v${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}
             v${{ steps.version.outputs.major }}
