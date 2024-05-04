@@ -19,7 +19,7 @@ jobs:
 
       - name: run build
         id: run-build
-        uses: redhat-actions/buildah-build@v2.12
+        uses: redhat-actions/buildah-build@v2.13
         with:
           image: justsomescripts/ansible-ee-alpine
           tags: latest ${{ github.sha }}
