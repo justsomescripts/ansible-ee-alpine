@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.3
 
       - name: run build
         id: run-build
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v2.12
         with:
           image: justsomescripts/ansible-ee-alpine
           tags: latest ${{ github.sha }}
@@ -37,5 +37,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print image url
+      - name: print image url
         run: echo "Image pushed to ${{ steps.push-image.outputs.registry-paths }}"
