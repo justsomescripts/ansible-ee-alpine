@@ -16,11 +16,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branches: |
-            [
-              'master',
-              {
-                  name: 'alpha',
-                  prerelease: true
-              }
-            ]
+          branch: main
