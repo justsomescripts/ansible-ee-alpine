@@ -61,7 +61,7 @@ jobs:
             ./Containerfile
 
       - name: push to registry
-        uses: redhat-actions/push-to-registry@v2.7
+        uses: redhat-actions/push-to-registry@v2.8
         with:
           image: ${{ github.ref_name == 'release' && steps.build-release.outputs.image || steps.build-alpha.outputs.image }}
           tags: ${{ github.ref_name == 'release' && steps.build-release.outputs.tags || steps.build-alpha.outputs.tags }}
