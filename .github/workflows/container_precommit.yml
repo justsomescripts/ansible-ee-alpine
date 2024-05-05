@@ -6,7 +6,6 @@ on:
       - release
     types:
       - opened
-  workflow_dispatch:
 
 permissions: write-all
 
