@@ -52,8 +52,8 @@ If you have any suggestions for improvements or fixes, feel free to open an [iss
 
 1. Fork the project
 2. Commit your changes (`git commit -m '<prefix> commit message'`)
-   - Prefix 'feat<...>:' to commit new features
-   - Prefix 'BREAKING CHANGE:' for breaking changes
+   - Prefix 'feat(<...>):' to commit new features
+   - Prefix '<...>(<...>)!:' for breaking changes
 3. Push to the branch (`git push origin feature/AmazingFeature`)
 4. Open a [pull request](https://github.com/justsomescripts/ansible-ee-alpine/pulls)
 
