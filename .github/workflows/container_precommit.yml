@@ -15,5 +15,4 @@ jobs:
     uses: justsomescripts/common-actions/.github/workflows/container-build.yml@release
     secrets: inherit
     with:
-      containerfile: ./Containerfile
-      build_image: false
+      check_only: true
