@@ -12,7 +12,7 @@ permissions: write-all
 
 jobs:
   call-workflow:
-    uses: justsomescripts/common-actions/.github/workflows/container-build.yml@release
+    uses: justsomescripts/common-actions/.github/workflows/container-build.yml@main
     secrets: inherit
     with:
       check_only: true
