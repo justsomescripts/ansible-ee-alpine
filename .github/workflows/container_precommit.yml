@@ -1,13 +1,6 @@
 name: Check code
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore: 
-      - '.github/workflows/**'
-      - '.github/release.yml'
-      - 'README.md'
   pull_request:
     branches:
       - release
