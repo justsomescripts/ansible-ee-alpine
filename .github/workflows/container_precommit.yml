@@ -1,0 +1,23 @@
+name: Check code
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore: 
+      - '.github/workflows/**'
+      - '.github/release.yml'
+      - 'README.md'
+  pull_request:
+    branches:
+      - release
+    types:
+      - opened
+
+jobs:
+  call-workflow:
+    uses: justsomescripts/common-actions/.github/workflows/container-build.yml@release
+    secrets: inherit
+    with:
+      containerfile: ./Containerfil
+      build_image: false
