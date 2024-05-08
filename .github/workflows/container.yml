@@ -1,24 +1,18 @@
 name: Build Container Image
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths-ignore: 
-      - '.github/workflows/**'
-      - '.github/release.yml'
-      - 'README.md'
   pull_request:
     branches:
       - main
+      - alpha
     types:
       - closed
-
-permissions: write-all
+  workflow_dispatch:
 
 jobs:
   call-workflow:
-    uses: justsomescripts/common-actions/.github/workflows/container-build.yml@main
+    uses: justsomescripts/common-actions/.github/workflows/container.build.yml@main
     secrets: inherit
     with:
-      containerfile: ./Containerfile
+      containerfile: Containerfile
+    permissions: write-all
