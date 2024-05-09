@@ -10,9 +10,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-workflow:
+  build-container:
     uses: justsomescripts/common-actions/.github/workflows/container.build.yml@main
     secrets: inherit
     with:
       containerfile: Containerfile
-    permissions: write-all
+    permissions:
+      checks: write
+      contents: write
