@@ -16,6 +16,7 @@ jobs:
     secrets: inherit
     with:
       containerfile: Containerfile
+      enable_cosign: 'false'
     permissions:
       checks: write
       contents: write
