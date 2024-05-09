@@ -16,7 +16,6 @@ jobs:
     secrets: inherit
     with:
       containerfile: Containerfile
-      sign_images: false
     permissions:
       checks: write
       contents: write
