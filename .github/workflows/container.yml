@@ -4,9 +4,10 @@ on:
   pull_request:
     branches:
       - main
-      - alpha
     types:
       - closed
+  schedule:
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
