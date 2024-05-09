@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/justsomescripts/ansible-ee-alpine/.github%2Fworkflows%2Fcontainer.yml?style=for-the-badge&logo=github)
-![Docker Image Version (tag)](https://img.shields.io/docker/v/justsomescripts/ansible-ee-alpine/latest?style=for-the-badge&logo=docker&color=blue)
-![Docker Image Size](https://img.shields.io/docker/image-size/justsomescripts/ansible-ee-alpine?style=for-the-badge&logo=docker&color=blue)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/justsomescripts/ansible-ee-alpine/.github%2Fworkflows%2Fcontainer.yml?style=for-the-badge&logo=github)](https://github.com/justsomescripts/ansible-ee-alpine/actions/workflows/container.yml)
+[![Docker Image Version (tag)](https://img.shields.io/docker/v/justsomescripts/ansible-ee-alpine/latest?style=for-the-badge&logo=docker&color=blue)](https://hub.docker.com/repository/docker/justsomescripts/ansible-ee-alpine/general)
+[![Docker Image Size](https://img.shields.io/docker/image-size/justsomescripts/ansible-ee-alpine?style=for-the-badge&logo=docker&color=blue)](https://hub.docker.com/repository/docker/justsomescripts/ansible-ee-alpine/general)
 
 <!-- omit in toc -->
 # Alpine Ansible Execution Environment
