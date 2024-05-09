@@ -20,3 +20,4 @@ jobs:
       checks: write
       contents: write
       packages: write
+      security-events: write
