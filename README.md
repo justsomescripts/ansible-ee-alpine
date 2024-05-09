@@ -1,10 +1,8 @@
 <a name="readme-top"></a>
-[![Workflows][actions-shield]][actions-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/justsomescripts/ansible-ee-alpine/.github%2Fworkflows%2Fcontainer.yml?style=for-the-badge&logo=github)
+![Docker Image Version (tag)](https://img.shields.io/docker/v/justsomescripts/ansible-ee-alpine/latest?style=for-the-badge&logo=docker&color=blue)
+![Docker Image Size](https://img.shields.io/docker/image-size/justsomescripts/ansible-ee-alpine?style=for-the-badge&logo=docker&color=blue)
+
 <!-- omit in toc -->
 # Alpine Ansible Execution Environment
 
@@ -69,20 +67,4 @@ Distributed under the *GNU GENERAL PUBLIC LICENSE*. See [`LICENSE`](LICENSE) for
 
 David Gries - [@dgries](https://www.linkedin.com/in/dgries/) - mail@dgries.de
 
-
-<br><sup>README based on [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template/tree/master)</sup>
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-[actions-shield]: https://img.shields.io/github/actions/workflow/status/justsomescripts/ansible-ee-alpine/container.yml?style=for-the-badge
-[actions-url]: https://github.com/justsomescripts/ansible-ee-alpine/actions/workflows/container.yml
-[contributors-shield]: https://img.shields.io/github/contributors/justsomescripts/ansible-ee-alpine.svg?style=for-the-badge
-[contributors-url]: https://github.com/justsomescripts/ansible-ee-alpine/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/justsomescripts/ansible-ee-alpine.svg?style=for-the-badge
-[forks-url]: https://github.com/justsomescripts/ansible-ee-alpine/network/members
-[stars-shield]: https://img.shields.io/github/stars/justsomescripts/ansible-ee-alpine.svg?style=for-the-badge
-[stars-url]: https://github.com/justsomescripts/ansible-ee-alpine/stargazers
-[issues-shield]: https://img.shields.io/github/issues/justsomescripts/ansible-ee-alpine.svg?style=for-the-badge
-[issues-url]: https://github.com/justsomescripts/ansible-ee-alpine/issues
-[license-shield]: https://img.shields.io/github/license/justsomescripts/ansible-ee-alpine.svg?style=for-the-badge
-[license-url]: https://github.com/justsomescripts/ansible-ee-alpine/blob/main/LICENSE
