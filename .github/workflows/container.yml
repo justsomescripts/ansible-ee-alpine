@@ -17,6 +17,9 @@ jobs:
     with:
       containerfile: Containerfile
       enable_cosign: 'false'
+      push_ghcr: 'true'
+      push_dockerhub: 'true'
+      push_quay: 'true'
     permissions:
       checks: write
       contents: write
