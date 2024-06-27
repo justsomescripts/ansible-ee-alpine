@@ -23,5 +23,6 @@ jobs:
     permissions:
       checks: write
       contents: write
+      actions: write
       packages: write
       security-events: write
