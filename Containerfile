@@ -12,7 +12,7 @@ FROM python:3-alpine3.20
  
 ######################################### RUNNER #########################################
  
-FROM python:python:3-alpine3.20
+FROM python:3-alpine3.20
  
     # Directory for executing Playbooks
     WORKDIR /runner/
