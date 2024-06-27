@@ -1,6 +1,6 @@
 ######################################### BUILD #########################################
  
-FROM python:alpine3.19@sha256:ff8436b0f58e915d812627de599608a86eb36522fae3fd9be3561bdd8eb6673a as builder
+FROM python:3-alpine as builder
  
     # Add configuration files
     COPY requirements/apk.build.list requirements/pip.list /requirements/
@@ -12,7 +12,7 @@ FROM python:alpine3.19@sha256:ff8436b0f58e915d812627de599608a86eb36522fae3fd9be3
  
 ######################################### RUNNER #########################################
  
-FROM python:alpine3.19@sha256:ff8436b0f58e915d812627de599608a86eb36522fae3fd9be3561bdd8eb6673a
+FROM python:3-alpine
  
     # Directory for executing Playbooks
     WORKDIR /runner/
