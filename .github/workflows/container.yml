@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-container:
-    uses: justsomescripts/github-common-actions/.github/workflows/container.build.yml@main
+    uses: justsomescripts/github-common-actions/.github/workflows/container.build.yml@79e791a776fc6db8498b101811d0e83088a6c938 # main
     secrets: inherit
     with:
       containerfile: Containerfile
